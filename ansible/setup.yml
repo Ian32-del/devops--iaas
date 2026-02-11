@@ -1,0 +1,21 @@
+- hosts : all
+  become : yes
+  tasks :
+    - name : Update apt package
+      apt :
+        update_cache : yes
+
+    - name : install dependencies
+      apt :
+        name :
+          - git
+          - curl
+          - python3-pip
+          - apt-transport-https
+          - ca-certificates
+
+    - name : start docker service
+      service :
+        name : docker
+        state : started
+        enabled : yes

@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                withKubeConfig([credentialsId: 'kubeconfig-cred-id']) {
+                withKubeConfig([credentialsId: 'kubeconfig-cred']) {
                 sh "kubectl apply -f k8s/deployment.yaml"
                 sh "kubectl rollout restart deployment backend-deployment -n ${KUBE_NAMESPACE}"
                 }
